@@ -1,0 +1,35 @@
+@CHARSET "UTF-8";
+
+body {
+	background-color: black;
+}
+
+#main {
+	position: absolute;
+	top: 50px;
+	left: 130px;
+}
+
+header, article, footer {
+	position: relative;
+}
+
+header {
+	width: 1020px;
+	height: 53px;
+}
+
+article {
+	width: 1020px;
+	height: 517px;
+}
+
+footer {
+	width: 1020px;
+	text-align: center;
+}
+
+header>span:nth-child(2) {
+	position: relative;
+	left: 283px;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<!-- [hpp swa(Web)] version [V1.0.0] 
+ Copyright © [2015] kt corp. All rights reserved. 
+ This is a proprietary software of kt corp, and you may not use this file except in compliance with license agreement with kt corp. Any redistribution or use of this software, with or without modification shall be strictly prohibited without prior written approval of kt corp, and the copyright notice above does not evidence any actual or intended publication of such software. -->
+<html>
+	<head>
+		<title>star wars application</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<script>
+			window.onload = function() {
+				initApp();
+			};
+		</script>
+	</head>
+	<body>
+		<div id="main">
+			<div class="main_view">
+				<img id="main_img" class="main_img" src="images/main_bg_01.png">
+				<div id="button_area" class="button_area">
+					<input type="button" id="main_btn_0" class="button btn0 focused" value=""/>				
+					<input type="button" id="main_btn_1" class="button btn1" value=""/>
+					<input type="button" id="main_btn_2" class="button btn2" value=""/>
+					<input type="button" id="main_btn_3" class="button btn3" value=""/>
+					<input type="button" id="main_btn_4" class="button btn4" value=""/>
+					<input type="button" id="main_btn_5" class="button btn5" value=""/>
+				</div>
+			</div>
+		</div>
+		
+		<div id="popup" style="display: none">
+				<img id="popup_img" class="popup_img" src="">
+				<input type="button" class="popup_point" style="position:absolute; width:30px;height: 46px;top: 337px;left: 84px; background: url(images/episode_arrow_left.png);">
+				<input type="button" style="position:absolute; width:30px;height: 46px;top: 337px;left: 1167px; background: url(images/episode_arrow_right.png);">
+				<input type="button" id="popup_btn_0" class="popupbtn btn0 focused">
+			
+		</div>
+		
+		
+		
+		<div id="cashe_area" class="button_area button_cashe">
+		</div>
+		
+		<div id="cashe_ep_img" class="popup_img img_cashe">
+		</div>
+		
+		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+	</body>
+</html>
