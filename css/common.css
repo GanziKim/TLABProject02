@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 body {
-	background-color: black;
+	/* background-color: black; */
 }
 
 #main {
@@ -22,6 +22,24 @@ header {
 article {
 	width: 1020px;
 	height: 517px;
+}
+article>#addingGiftBodyImage{
+	position: absolute;
+	top : 73px;
+	left: 76px;
+}
+#addingGiftBodyImage>span>.addingBodyBallonImage{
+	position: absolute;
+	left : 20px; 
+}
+#addingGiftBodyImage>span>.addingBodyPosterImage{
+	position: absolute;
+	top : 73px;	
+	left: 22px;
+}
+#addingGiftBodyImage>span>.addingBodyFooterImage{
+	position: absolute;
+	top : 259px;
 }
 
 footer {
