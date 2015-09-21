@@ -48,6 +48,25 @@ article {
 	position : absolute;
 	top : 259px;
 }
+.addingBodyBallonImage>img:nth-child(2){
+	position: absolute;
+	left :28px;
+	top: 11px;
+}
+.left{
+	position:absolute;
+	top : 246px;
+	left : 20px;
+	width : 20px;
+	height: 35px;
+}
+.right{
+	position: absolute;
+	left : 980px;
+	top : 246px;
+	width : 20px;
+	height: 35px;
+}
 
 footer {
 	width: 1020px;
