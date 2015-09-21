@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 body {
-	/* background-color: black; */
+	background-color: black;
 }
 
 #main {
@@ -16,29 +16,36 @@ header, article, footer {
 
 header {
 	width: 1020px;
-	height: 53px;
+	height: 50px;
+	border-bottom: 3px solid #FF1212;
 }
 
 article {
 	width: 1020px;
 	height: 517px;
 }
-article>#addingGiftBodyImage{
+ #addingGiftBodyImage{
 	position: absolute;
-	top : 73px;
+	top : 82px;
 	left: 76px;
 }
-#addingGiftBodyImage>span>.addingBodyBallonImage{
-	position: absolute;
-	left : 20px; 
+
+#addingGiftBodyImage>div{
+	display:inline-block;
+	position: relative;
+	width : 168px;
 }
-#addingGiftBodyImage>span>.addingBodyPosterImage{
-	position: absolute;
-	top : 73px;	
-	left: 22px;
+#addingGiftBodyImage>div>.addingBodyBallonImage{
+	position : relative;
+	left : 20px;
 }
-#addingGiftBodyImage>span>.addingBodyFooterImage{
-	position: absolute;
+#addingGiftBodyImage>div>.addingBodyPosterImage{
+	position : absolute;
+	left : 22px;
+	top : 73px;
+}
+#addingGiftBodyImage>div>.addingBodyFooterImage{
+	position : absolute;
 	top : 259px;
 }
 

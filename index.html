@@ -13,6 +13,8 @@
 	var upDown = 1;
 	var headerImageMove = 1;
 	var bodyImageMove = 1;
+	
+	var $body = "<div><div class='addingBodyBallonImage'><img><img></div><div class='addingBodyPosterImage'><img></div><div class='addingBodyFooterImage'><img></div></div>";
 
 	$(function() { //$(document).ready(function(){ }) 와 같음
 
@@ -26,7 +28,7 @@
 		switch (headerImageMove) {
 		case 0:
 			$("#headerImage").attr("src", "images/tab_1_on.png"); /* header */
-			$("#addingGiftBodyImage").hide();
+			$("#addingGiftBodyImage").empty();
 			$("#bodyImage").attr("src", bodyImage); /* body */
 			$("#footerImage>a>img").attr("src", footer);  /* footer */
 			break;
@@ -35,19 +37,18 @@
 			
 			/* body */
 			$("#bodyImage").attr("src", "images/gift_bg.png");
-			
-				$(".addingBodyBallonImage>a>img").attr("src", "images/textballoon_unfocus.png");
-				$(".addingBodyPosterImage>a>img").attr("src", "images/Poster_img1.png");
-				$(".addingBodyFooterImage>a>img").attr("src", "images/poster_sh.png");
-			
-			
-			
+			for(var i = 1; i <6; i++){
+				$("#addingGiftBodyImage").append($body);
+				$(".addingBodyBallonImage>img:nth-child(1)").attr("src", "images/textballoon_unfocus.png");
+				$("#addingGiftBodyImage>div:nth-child("+i+")>.addingBodyPosterImage>img").attr("src", "images/Poster_img"+i+".png");
+				$(".addingBodyFooterImage>img").attr("src", "images/poster_sh.png");
+			}
 			$("#footerImage>a>img").attr("src", footer); /* footer */
 			$("#addingGiftBodyImage").show();
 			break;
 		case 2:
 			$("#headerImage").attr("src", "images/tab_3_on.png"); /* header */
-			$("#addingGiftBodyImage").hide();
+			$("#addingGiftBodyImage").empty();
 			$("#bodyImage").attr("src", "images/info_3_1020x517.jpg");  /* body */
 			$("#footerImage>a>img").attr("src", footer);  /* footer */
 			break;
@@ -57,28 +58,18 @@
 		console.log
 		lockImageNum = 	(lockImageNum <= 0 ? 2 - (lockImageNum * (-1) % 3) : (lockImageNum - 1) % 3)
 		if(upDown == 1){
-		$("#headerImage").attr('src',
-				"images/tab_" + (lockImageNum+1) + "_sel.png")
+		$("#headerImage").attr('src',"images/tab_" + (lockImageNum+1) + "_sel.png")
 		}else if(upDown == 2){
-			$("#headerImage").attr('src',
-					"images/tab_" + (lockImageNum+1) + "_on.png")
+			$("#headerImage").attr('src',	"images/tab_" + (lockImageNum+1) + "_on.png")
 		}
 	}
 
-	/* function upDown(upDown){
-		switch (upDown){
-		case 1:
-			Drawing(--headerImageMove);
-			break;
-		case 2:
-			break;
-		case 3:
-			break;
+	function bodyDrawing(upDown){
+		if(upDown != 2 ){
+			$(".addingBodyBallonImage>img:nth-child(1)").attr("src","images/textballoon_unfocus.png")
+		}else{
+			$(".addingBodyBallonImage>img:nth-child(1)").attr("src","images/textballoon_focus.png")
 		}
-	} */
-	
-	function bodyDrawing(bodyImageMove){
-		$(".addingBodyBallonImage>a>img").attr("src","images/textballoon_focus.png")
 	}
 
 	function keydownhandler(event) {
@@ -101,8 +92,10 @@
 			} else if (upDown == 2) {
 				locking(headerImageMove, upDown);
 				--upDown;
+				bodyDrawing(upDown);
 			} else if (upDown == 3) {
 				--upDown;
+				bodyDrawing(upDown);
 			}
 			break;
 		case 39:
@@ -121,9 +114,10 @@
 			if (upDown == 1) {
 				locking(headerImageMove, upDown);
 				++upDown;
-				bodyDrawing(bodyImageMove);
+				bodyDrawing(upDown);
 			} else if (upDown == 2) {
 				++upDown;
+				bodyDrawing(upDown);
 			} else if (upDown == 3) {
 				
 			}
@@ -146,11 +140,7 @@
 			<span><img id="bodyImage"></span>
 			
 			<div id="addingGiftBodyImage">  <!-- 선물교환 페이지에서만 등장 -->
-				<span>
-					<span class="addingBodyBallonImage"><a><img></a></span>
-					<span class="addingBodyPosterImage"><a><img></a></span>
-					<span class="addingBodyFooterImage"><a><img></a></span>
-				</span> <!-- 인라인 요소안에 블럭요소를 감싸면 안된다.  -->
+				
 			</div>
 			
 		</article>
