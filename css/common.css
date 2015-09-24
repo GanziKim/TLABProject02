@@ -29,6 +29,16 @@ article {
 	top : 82px;
 	left: 76px;
 }
+article>img:nth-child(1){
+	position : absolute;
+	left: 20px;
+	top: 246px;
+}
+article>img:nth-child(2){
+	position: absolute;
+	left:980px;
+	top: 246px;
+}
 
 #addingGiftBodyImage>div{
 	display:inline-block;
@@ -51,21 +61,30 @@ article {
 .addingBodyBallonImage>img:nth-child(2){
 	position: absolute;
 	left :28px;
-	top: 11px;
+	top: 14px;
 }
-.left{
-	position:absolute;
-	top : 246px;
-	left : 20px;
-	width : 20px;
-	height: 35px;
-}
-.right{
+.addingBodyBallonImage>span{
+	color : white;
+	font-family: 'Yoon 윤고딕 540_TT';
 	position: absolute;
-	left : 980px;
-	top : 246px;
-	width : 20px;
-	height: 35px;
+	left :92px;
+	top: 13px;
+}
+
+#headerNum{
+	color: white;
+	font-size: 33px;
+	left : 942px;
+	right : 13px;
+	position: absolute;
+	
+}
+#headerTxt{
+	color: white;
+	font-size: 18px;
+	right : 177px;
+	top : 14px;
+	position: absolute;
 }
 
 footer {
@@ -74,6 +93,7 @@ footer {
 }
 
 header>span:nth-child(2) {
-	position: relative;
-	left: 283px;
+	position: absolute;
+	top : 11px;
+	left: 853px;
 }

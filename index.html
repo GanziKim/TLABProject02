@@ -9,25 +9,49 @@
 	/* 초기화에 사용될 변수와 값 */
 	var headerImage = "images/tab_1_on.png";
 	var bodyImage = "images/info_1_1020x517.jpg";
-	var footer = "images/ms_btn.png";
+	var footer = "images/main_btn_unfocus.png";
 	var upDown = 1;
 	var headerImageMove = 1;
 	var bodyImageMove = 1;
+	var posterMoving = 1;
+	var size = 7;
+	var data;
 	
-	var $body = "<div><div class='addingBodyBallonImage'><img><img></div><div class='addingBodyPosterImage'><img></div><div class='addingBodyFooterImage'><img></div></div>";
+	var $body = "<div><div class='addingBodyBallonImage'>"
+	 + "<img><img><span></span>"
+	 + "</div><div class='addingBodyPosterImage'><img></div><div class='addingBodyFooterImage'><img></div></div>";
 
+
+	 
+	 
 	$(function() { //$(document).ready(function(){ }) 와 같음
 
-		Drawing(headerImageMove); //페이지 로딩시 실행
-
-		document.addEventListener('keydown', keydownhandler);
+		 $.ajax({
+				url : "http://fif.hpp.kt.com/pageService/getPageInfo.json",
+				dataType : "JSON",
+				data : {
+				pageId  : "D1GMJM000000000SVHPP",
+				said : "11111111111",
+				stbModel : "123123123",
+				platformType : "WEB"
+				},
+				success : function(result){
+					data = result;
+				}
+			});
+			document.addEventListener('keydown', keydownhandler);
+			Drawing(headerImageMove,data); //페이지 로딩시 실행
 	});
 
+	/* 구성페이지 전환 */
 	function Drawing(headerImageMove) {
+		
 		headerImageMove = (headerImageMove <= 0 ? 2 - (headerImageMove * (-1) % 3) : (headerImageMove - 1) % 3);
 		switch (headerImageMove) {
 		case 0:
 			$("#headerImage").attr("src", "images/tab_1_on.png"); /* header */
+			$("#headerNum").text("9999")
+			$("#headerTxt").text("나의 미키마우스");
 			$("#addingGiftBodyImage").empty();
 			$("#bodyImage").attr("src", bodyImage); /* body */
 			$("#footerImage>a>img").attr("src", footer);  /* footer */
@@ -37,13 +61,9 @@
 			
 			/* body */
 			$("#bodyImage").attr("src", "images/gift_bg.png");
-			for(var i = 1; i <6; i++){
-				$("#addingGiftBodyImage").append($body);
-				$(".addingBodyBallonImage>img:nth-child(1)").attr("src", "images/textballoon_unfocus.png");
-				$(".addingBodyBallonImage>img:nth-child(2)").attr("src", "images/icon_s_w_54x23.png");
-				$("#addingGiftBodyImage>div:nth-child("+i+")>.addingBodyPosterImage>img").attr("src", "images/Poster_img"+i+".png");
-				$(".addingBodyFooterImage>img").attr("src", "images/poster_sh.png");
-			}
+			
+			posterOutput(size, posterMoving);
+			
 			$("#footerImage>a>img").attr("src", footer); /* footer */
 			$("#addingGiftBodyImage").show();
 			break;
@@ -51,22 +71,37 @@
 			$("#headerImage").attr("src", "images/tab_3_on.png"); /* header */
 			$("#addingGiftBodyImage").empty();
 			$("#bodyImage").attr("src", "images/info_3_1020x517.jpg");  /* body */
+			
 			$("#footerImage>a>img").attr("src", footer);  /* footer */
 			break;
 		}
 	}
-	function locking(lockImageNum, upDown) {
-		console.log
-		lockImageNum = 	(lockImageNum <= 0 ? 2 - (lockImageNum * (-1) % 3) : (lockImageNum - 1) % 3)
-		if(upDown == 1){
-		$("#headerImage").attr('src',"images/tab_" + (lockImageNum+1) + "_sel.png")
-		}else if(upDown == 2){
-			$("#headerImage").attr('src',	"images/tab_" + (lockImageNum+1) + "_on.png")
+	
+	/* v포스터 출력 */
+	function posterOutput(size, posterMoving){
+		$("#addingGiftBodyImage").empty();
+		var $arrow_left = "images/arrows_left.png";
+		var $arrow_right = "images/arrows_right.png";
+		if(size > 6){
+			var $right = $("article>img:nth-child(2)").attr('src',$arrow_right);
+		}else if(currentSize > 6){
+			var $left = $("article>img:nth-child(1)").attr('src',$arrow_left);
 		}
+		
+		for(var i = posterMoving; i <5+posterMoving; i++){
+			$("#addingGiftBodyImage").append($body);
+			$(".addingBodyBallonImage>img:nth-child(1)").attr("src", "images/textballoon_unfocus.png");
+			$(".addingBodyBallonImage>img:nth-child(2)").attr("src", "images/icon_s_w_54x23.png");
+			$(".addingBodyBallonImage>span:nth-child("+i+")").text(data.hpp.exchange[i].reward[0].rewardContent[0].originalPrice);
+			$("#addingGiftBodyImage>div:nth-child("+i+")>.addingBodyPosterImage>img").attr("src", data.hpp.exchange[i].reward[0].rewardImg);
+			$(".addingBodyFooterImage>img").attr("src", "images/poster_sh.png");
+		}
+		console.log($(".addingBodyBallonImage:nth-child(1)>span").html("111"));
+		
 	}
-
+	
+	/*  포스터 이동 */
 	function bodyDrawing(upDown, focusImage){
-		console.log(focusImage);
 		if(upDown != 2 ){
 			$(".addingBodyBallonImage>img:nth-child(1)").attr("src","images/textballoon_unfocus.png")
 		}else{
@@ -76,41 +111,57 @@
 		}
 		
 		if(upDown != 3){
-			$("#footerImage>a>img").attr('src','images/ms_btn.png');
+			$("#footerImage>a>img").attr('src', footer);
 		}else{
-			$("#footerImage>a>img").attr('src','images/ms_btn_f.png');
+			$("#footerImage>a>img").attr('src','images/main_btn_focus.png');
 		}
 	}
 
+	
+	/* header 잠금 */
+	function locking(lockImageNum, upDown) {
+		lockImageNum = 	(lockImageNum <= 0 ? 2 - (lockImageNum * (-1) % 3) : (lockImageNum - 1) % 3)
+		if(upDown == 1){
+		$("#headerImage").attr('src',"images/tab_" + (lockImageNum+1) + "_sel.png")
+		}else if(upDown == 2){
+			$("#headerImage").attr('src',	"images/tab_" + (lockImageNum+1) + "_on.png")
+		}
+	}
+
+	
 	function keydownhandler(event) {
+		/* enter = 13 */
 		switch (event.keyCode) {
 		case 37:
 			if (upDown == 1) {
 				Drawing(--headerImageMove);
 			} else if (upDown == 2) {
-				
-				bodyDrawing(2, --bodyImageMove);
+				if(bodyImageMove > 1){
+					--bodyImageMove;
+				}
+				bodyDrawing(2, bodyImageMove);
 			} else if (upDown == 3) {
 
 			}
 			break;
 		case 38:
-			if (upDown == 1) {
-				
-			} else if (upDown == 2) {
+			if (upDown == 2) {
 				locking(headerImageMove, upDown);
 				--upDown;
-				bodyDrawing(upDown, bodyImageMove);
+				bodyDrawing(upDown, 1);
 			} else if (upDown == 3) {
 				--upDown;
-				bodyDrawing(upDown, null);
+				bodyDrawing(upDown,bodyImageMove);
 			}
 			break;
 		case 39:
 			if (upDown == 1) {
 				Drawing(++headerImageMove);
 			} else if (upDown == 2) {
-				bodyDrawing(2, ++bodyImageMove);
+				if(bodyImageMove < 5){
+					++bodyImageMove;
+				}
+				bodyDrawing(2, bodyImageMove);
 			} else if (upDown == 3) {
 
 			}
@@ -119,15 +170,14 @@
 			if (upDown == 1) {
 				locking(headerImageMove, upDown);
 				++upDown;
-				bodyDrawing(upDown, 1);
+				bodyDrawing(upDown, bodyImageMove);
 			} else if (upDown == 2) {
 				++upDown;
-				bodyDrawing(upDown, null);
-			} else if (upDown == 3) {
-				
+				bodyDrawing(upDown, 1);
 			}
 			break;
 		}
+		
 	}
 </script>
 </head>
@@ -135,16 +185,19 @@
 	<div id="main">
 		<header>
 			<!-- header -->
-			<span><img id="headerImage"></span> <span><img
+			<span><img id="headerImage"></span> 
+			<span><img
 				src="images/icon_b_74x30.png"></span>
+			<span id="headerNum"></span>
+			<span id="headerTxt"></span>
 		</header>
 
 		<article>
 			<!-- body -->
 			<span><img id="bodyImage"></span>
-			
+				<img >
+				<img >
 			<div id="addingGiftBodyImage">  <!-- 선물교환 페이지에서만 등장 -->
-				
 			</div>
 			
 		</article>
