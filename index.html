@@ -19,24 +19,22 @@
 	
 	var $body = "<div><div class='addingBodyBallonImage'>"
 	 + "<img><img><span></span>"
-	 + "</div><div class='addingBodyPosterImage'><img></div><div class='addingBodyFooterImage'><img></div></div>";
+	 + "</div><div class='addingBodyPosterImage'><img></div>"
+	 + "<div class='addingBodyFooterImage'><img></div></div>";
 
-
-	 
-	 
 	$(function() { //$(document).ready(function(){ }) 와 같음
 
 		 $.ajax({
 				url : "http://fif.hpp.kt.com/pageService/getPageInfo.json",
 				dataType : "JSON",
 				data : {
-				pageId  : "D1GMJM000000000SVHPP",
-				said : "11111111111",
-				stbModel : "123123123",
-				platformType : "WEB"
+					pageId  : "D1GMJM000000000SVHPP",
+					said : "11111111111",
+					stbModel : "123123123",
+					platformType : "WEB"
 				},
 				success : function(result){
-					data = result;
+					data = result;					
 				}
 			});
 			document.addEventListener('keydown', keydownhandler);
@@ -92,11 +90,11 @@
 			$("#addingGiftBodyImage").append($body);
 			$(".addingBodyBallonImage>img:nth-child(1)").attr("src", "images/textballoon_unfocus.png");
 			$(".addingBodyBallonImage>img:nth-child(2)").attr("src", "images/icon_s_w_54x23.png");
-			$(".addingBodyBallonImage>span:nth-child("+i+")").text(data.hpp.exchange[i].reward[0].rewardContent[0].originalPrice);
+			$(".addingBodyBallonImage>span:nth-child("+i+")").html(data.hpp.exchange[i].reward[0].rewardContent[0].originalPrice);
 			$("#addingGiftBodyImage>div:nth-child("+i+")>.addingBodyPosterImage>img").attr("src", data.hpp.exchange[i].reward[0].rewardImg);
 			$(".addingBodyFooterImage>img").attr("src", "images/poster_sh.png");
+			console.log($(".addingBodyBallonImage>span:nth-child("+i+")").text(data.hpp.exchange[i].reward[0].rewardContent[0].originalPrice));
 		}
-		console.log($(".addingBodyBallonImage:nth-child(1)>span").html("111"));
 		
 	}
 	
@@ -185,28 +183,26 @@
 	<div id="main">
 		<header>
 			<!-- header -->
-			<span><img id="headerImage"></span> 
-			<span><img
-				src="images/icon_b_74x30.png"></span>
-			<span id="headerNum"></span>
-			<span id="headerTxt"></span>
+			<span><img id="headerImage"></span> <span><img
+				src="images/icon_b_74x30.png"></span> <span id="headerNum"></span> <span
+				id="headerTxt"></span>
 		</header>
 
 		<article>
+		
 			<!-- body -->
-			<span><img id="bodyImage"></span>
-				<img >
-				<img >
-			<div id="addingGiftBodyImage">  <!-- 선물교환 페이지에서만 등장 -->
+			<span><img id="bodyImage"></span> 
+				<img>
+				<img>
+			<div id="addingGiftBodyImage"> <!-- 선물교환 페이지에서만 등장 -->
 			</div>
-			
+
 		</article>
 
 		<footer>
 			<!-- footer -->
 			<span id="footerImage"><a href="#"><img></a></span>
 		</footer>
-		<div id="test">
-		</div>
+		<div id="test"></div>
 	</div>
 </body>

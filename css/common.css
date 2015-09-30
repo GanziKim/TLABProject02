@@ -45,33 +45,32 @@ article>img:nth-child(2){
 	position: relative;
 	width : 168px;
 }
-#addingGiftBodyImage>div>.addingBodyBallonImage{
+#addingGiftBodyImage>div>.addingBodyBallonImage {
 	position : relative;
 	left : 20px;
 }
-#addingGiftBodyImage>div>.addingBodyPosterImage{
+#addingGiftBodyImage>div>.addingBodyPosterImage {
 	position : absolute;
 	left : 22px;
 	top : 73px;
 }
-#addingGiftBodyImage>div>.addingBodyFooterImage{
+#addingGiftBodyImage>div>.addingBodyFooterImage {
 	position : absolute;
 	top : 259px;
 }
-.addingBodyBallonImage>img:nth-child(2){
+.addingBodyBallonImage>img:nth-child(2) {
 	position: absolute;
 	left :28px;
 	top: 14px;
 }
-.addingBodyBallonImage>span{
+.addingBodyBallonImage>span {
 	color : white;
-	font-family: 'Yoon 윤고딕 540_TT';
 	position: absolute;
 	left :92px;
 	top: 13px;
 }
 
-#headerNum{
+#headerNum {
 	color: white;
 	font-size: 33px;
 	left : 942px;
@@ -79,7 +78,7 @@ article>img:nth-child(2){
 	position: absolute;
 	
 }
-#headerTxt{
+#headerTxt {
 	color: white;
 	font-size: 18px;
 	right : 177px;
