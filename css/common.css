@@ -69,8 +69,12 @@ article>img:nth-child(2){
 	left :92px;
 	top: 13px;
 }
+<<<<<<< HEAD
 
 #headerNum {
+=======
+#headerNum{
+>>>>>>> c402d8785175ffde0219a80c5963bc11999ea16d
 	color: white;
 	font-size: 33px;
 	left : 942px;
@@ -84,6 +88,28 @@ article>img:nth-child(2){
 	right : 177px;
 	top : 14px;
 	position: absolute;
+}
+#poster_focus{
+	position: absolute;
+	left : -23px;
+	top : -23px;
+}
+
+#third_ballon{
+	position : absolute;
+	left : 431px;
+	top : 35px;
+	
+}
+#machine_top, #machine2, #ani {
+	position : absolute;
+	left : 357px;
+	top : 110px;
+}
+#machine1{
+	position : absolute;
+	top : 110px;
+	left:357px;
 }
 
 footer {
