@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title></title>
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<script src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$.ajax({
+			url : "http://fif.hpp.kt.com/pageService/getPageInfo.json",
+			dataType : "JSON",
+			data : {
+				pageId : "D1GMJM000000000SVHPP",
+				said : "11111111111",
+				stbModel : "123123123",
+				platformType : "WEB"
+			},
+			success : function(result) {
+				if (result.hpp.result == 'SUCCESS') { 
+					data = result;
+					var a = document.addEventListener('keydown', keydownhandler);
+s					init(1);
+				} //end if
+			}, //end success
+			error : function(request, status, error) {
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n" + "error:" + error);
+			}//end error
+		});//end ajax
+	});//end function
+	
+	
+	var drawing = function(keydownhandler){
+	}
+	var keydownhandler = function(event){
+
+	}
+	
+	var init = function(pageNo){
+		switch(pageNo){
+		case 1:
+				drawing(keydownhandler);
+		break;
+		case 2:
+				drawing(keydownhandler);
+		break;
+		}	
+	}
+
+</script>
+</head>
+<body>
+
+
+
+
+</body>
+</html>

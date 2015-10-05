@@ -39,7 +39,15 @@ article>img:nth-child(2){
 	left:980px;
 	top: 246px;
 }
-
+#infoLeftImg{
+	position: absolute;
+	top: 218px;
+}
+#infoRightImg{
+	position:absolute;
+	top: 218px;
+	left : 952px;
+}
 #addingGiftBodyImage>div{
 	display:inline-block;
 	position: relative;
@@ -111,6 +119,34 @@ footer {
 	width: 1020px;
 	text-align: center;
 }
+
+#leftBtn, #rightBtn, #pageNumText{
+	position: relative;
+	vertical-align : top;
+	display: inline;
+}
+
+#footerImage>span{
+	position: absolute;
+	top : 30px;
+	right : 30px;
+}
+#pageNumText>span:nth-child(1), #pageNumText>span:nth-child(2){
+	vertical-align : top;
+	padding-right: 5px;
+	padding-left: 10px;
+	color: rgb(255,255,255);
+	font-style: normal;
+	font-size: 20px;
+}
+ #pageNumText>span:nth-child(3){
+	vertical-align : top;
+ 	padding-left: 5px;
+ 	padding-right: 10px;
+	color: rgb(119,119,119);
+	font-style: normal;
+	font-size: 20px;
+ }
 
 header>span:nth-child(2) {
 	position: absolute;
